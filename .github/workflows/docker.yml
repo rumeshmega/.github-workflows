@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - name: Pull Docker image from Docker Hub
-        run: docker pull kubeimage:31
+        run: docker pull kubeimage:latest
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.MY_SECRET_TOKEN}}
 
       - name: Tag Docker image for GitHub Container Registry
-        run: docker tag kubeimage:31 ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:31
+        run: docker tag kubeimage:latest ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
 
       - name: Push Docker image to GitHub Container Registry
-        run: docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:31
+        run: docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
